@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>3.0.1</version>
+    <version>3.0.2-SNAPSHOT</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
@@ -44,7 +44,7 @@
         <url>http://github.com/webjars/highcharts</url>
         <connection>scm:git:https://github.com/webjars/highcharts.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/highcharts.git</developerConnection>
-        <tag>highcharts-3.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
