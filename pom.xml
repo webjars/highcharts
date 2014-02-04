@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>3.0.8-SNAPSHOT</version>
+    <version>3.0.9-SNAPSHOT</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
@@ -57,7 +57,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>3.0.7</upstreamVersion>
+        <upstreamVersion>3.0.9</upstreamVersion>
         <downloadUrl>http://code.highcharts.com/${upstreamVersion}</downloadUrl>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
     </properties>
@@ -114,7 +114,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.4.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.9</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>sonatype-nexus-staging</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
