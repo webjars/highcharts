@@ -16,6 +16,18 @@
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <upstreamVersion>3.0.10</upstreamVersion>
+        <downloadUrl>http://code.highcharts.com/${upstreamVersion}</downloadUrl>
+        <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
+        <requirejs>
+            {
+                "paths": { "highcharts": "highcharts" }
+            }
+        </requirejs>
+    </properties>
+    
 <!-- NOT SURE IF THIS IS A REQUIRED DEP OR NOT
     <dependencies>
         <dependency>
@@ -55,13 +67,6 @@
         </developer>
     </developers>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>3.0.9</upstreamVersion>
-        <downloadUrl>http://code.highcharts.com/${upstreamVersion}</downloadUrl>
-        <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
-    </properties>
-    
     <build>
         <plugins>
             <plugin>
