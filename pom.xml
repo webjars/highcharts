@@ -11,15 +11,15 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>3.0.11-SNAPSHOT</version>
+    <version>4.0.1-SNAPSHOT</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>3.0.10</upstreamVersion>
-        <downloadUrl>http://code.highcharts.com/${upstreamVersion}</downloadUrl>
+        <upstreamVersion>4.0.1</upstreamVersion>
+        <downloadUrl>http://code.highcharts.com/zips</downloadUrl>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
         <requirejs>
             {
@@ -69,64 +69,62 @@
 
     <build>
         <plugins>
+<!--
+This is broken due to a strange http response header in the download.
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>wagon-maven-plugin</artifactId>
-                <version>1.0-beta-4</version>
+                <version>1.0-beta-5</version>
                 <executions>
                     <execution>
-                        <id>download-highcharts.js</id>
                         <phase>process-resources</phase>
-                        <goals><goal>download-single</goal></goals>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
                         <configuration>
                             <url>${downloadUrl}</url>
-                            <fromFile>highcharts.js</fromFile>
-                            <toDir>${destinationDir}</toDir>
+                            <fromFile>Highcharts-${upstreamVersion}.zip</fromFile>
+                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
                         </configuration>
                     </execution>
+                </executions>
+                <dependencies>
+                </dependencies>
+            </plugin>
+-->
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
                     <execution>
-                        <id>download-highcharts-more.js</id>
                         <phase>process-resources</phase>
-                        <goals><goal>download-single</goal></goals>
+                        <goals><goal>run</goal></goals>
                         <configuration>
-                            <url>${downloadUrl}</url>
-                            <fromFile>highcharts-more.js</fromFile>
-                            <toDir>${destinationDir}</toDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download-mootools-adapter.js</id>
-                        <phase>process-resources</phase>
-                        <goals><goal>download-single</goal></goals>
-                        <configuration>
-                            <url>${downloadUrl}/adapters</url>
-                            <fromFile>mootools-adapter.js</fromFile>
-                            <toDir>${destinationDir}/adapters</toDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download-prototype-adapter.js</id>
-                        <phase>process-resources</phase>
-                        <goals><goal>download-single</goal></goals>
-                        <configuration>
-                            <url>${downloadUrl}/adapters</url>
-                            <fromFile>prototype-adapter.js</fromFile>
-                            <toDir>${destinationDir}/adapters</toDir>
+                            <target>
+                                <!-- fun workaround -->
+                                <echo message="downloading via curl"/>
+                                <exec executable="curl">
+                                    <arg value="-o"/>
+                                    <arg value="${project.build.directory}/${project.artifactId}.zip"/>
+                                    <arg value="${downloadUrl}/Highcharts-${upstreamVersion}.zip"/>
+                                </exec>
+                                <echo message="unzipping"/>
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}/zip" />
+                                <echo message="moving resources" />
+                                <move todir="${destinationDir}">
+                                    <fileset dir="${project.build.directory}/zip/js" />
+                                </move>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.2</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.9</version>
-                    </dependency>
-                </dependencies>
+                <version>2.5</version>
             </plugin>
 
             <plugin>
