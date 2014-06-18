@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>4.0.1-SNAPSHOT</version>
+    <version>4.0.1</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
@@ -56,7 +56,7 @@
         <url>http://github.com/webjars/highcharts</url>
         <connection>scm:git:https://github.com/webjars/highcharts.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/highcharts.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>highcharts-4.0.1</tag>
     </scm>
 
     <developers>
@@ -103,13 +103,13 @@ This is broken due to a strange http response header in the download.
                         <configuration>
                             <target>
                                 <!-- fun workaround -->
-                                <echo message="downloading via curl"/>
+                                <echo message="downloading via curl" />
                                 <exec executable="curl">
-                                    <arg value="-o"/>
-                                    <arg value="${project.build.directory}/${project.artifactId}.zip"/>
-                                    <arg value="${downloadUrl}/Highcharts-${upstreamVersion}.zip"/>
+                                    <arg value="-o" />
+                                    <arg value="${project.build.directory}/${project.artifactId}.zip" />
+                                    <arg value="${downloadUrl}/Highcharts-${upstreamVersion}.zip" />
                                 </exec>
-                                <echo message="unzipping"/>
+                                <echo message="unzipping" />
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}/zip" />
                                 <echo message="moving resources" />
                                 <move todir="${destinationDir}">
