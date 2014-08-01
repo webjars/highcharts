@@ -5,20 +5,20 @@
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
-        <version>7</version>
+        <version>9</version>
     </parent>
 
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>4.0.2-SNAPSHOT</version>
+    <version>4.0.3-SNAPSHOT</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>4.0.1</upstreamVersion>
+        <upstreamVersion>4.0.3</upstreamVersion>
         <downloadUrl>http://code.highcharts.com/zips</downloadUrl>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
         <requirejs>
@@ -130,7 +130,7 @@ This is broken due to a strange http response header in the download.
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.5.1</version>
+                <version>1.6.2</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId>
