@@ -23,7 +23,7 @@
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destinationDir>
         <requirejs>
             {
-                "paths": { "highcharts": "highcharts" }
+                "paths": { "highcharts": "highcharts", "highcharts-all": "highcharts-all"}
             }
         </requirejs>
     </properties>
