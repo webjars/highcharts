@@ -18,7 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>4.2.4</upstreamVersion>
+        <upstreamVersion>4.2.5</upstreamVersion>
         <downloadUrl>http://code.highcharts.com/zips</downloadUrl>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destinationDir>
         <requirejs>
