@@ -126,7 +126,7 @@ This is broken due to a strange http response header in the download.
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}/zip" />
                                 <echo message="moving resources" />
                                 <move todir="${destinationDir}">
-                                    <fileset dir="${project.build.directory}/zip/js" />
+                                    <fileset dir="${project.build.directory}/zip/code" />
                                 </move>
                             </target>
                         </configuration>
