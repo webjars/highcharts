@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>6.0.4-1-SNAPSHOT</version>
+    <version>6.0.4-1</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
@@ -45,7 +45,7 @@
         <url>http://github.com/webjars/highcharts</url>
         <connection>scm:git:https://github.com/webjars/highcharts.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/highcharts.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>highcharts-6.0.4-1</tag>
     </scm>
 
     <developers>
@@ -81,8 +81,8 @@
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <echo message="download archive"/>
-                                <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip"/>
+                                <echo message="download archive" />
+                                <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip" />
                                 <echo message="unzipping" />
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
