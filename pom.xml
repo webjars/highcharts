@@ -11,14 +11,14 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>6.0.5-SNAPSHOT</version>
+    <version>6.0.4-1-SNAPSHOT</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <downloadUrl>http://code.highcharts.com/zips</downloadUrl>
+        <upstream.url>https://github.com/highcharts/highcharts-dist/archive/v${version.unrevise}.zip</upstream.url>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destinationDir>
         <requirejs>
             {
@@ -27,16 +27,6 @@
         </requirejs>
     </properties>
     
-<!-- NOT SURE IF THIS IS A REQUIRED DEP OR NOT
-    <dependencies>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>exportingjs</artifactId>
-            <version>3.0.1</version>
-        </dependency>
-    </dependencies>
--->
-
     <licenses>
         <license>
             <comments>Non-commercial - Free</comments>
@@ -71,7 +61,7 @@
             <plugin>
                 <groupId>com.jamesward</groupId>
                 <artifactId>unsnapshot-maven-plugin</artifactId>
-                <version>0.1</version>
+                <version>0.2</version>
                 <executions>
                     <execution>
                         <phase>initialize</phase>
@@ -82,30 +72,6 @@
                 </executions>
             </plugin>
 
-<!--
-This is broken due to a strange http response header in the download.
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>wagon-maven-plugin</artifactId>
-                <version>1.0-beta-5</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
-                        <configuration>
-                            <url>${downloadUrl}</url>
-                            <fromFile>Highcharts-${upstreamVersion}.zip</fromFile>
-                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                </dependencies>
-            </plugin>
--->
-
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
@@ -115,18 +81,13 @@ This is broken due to a strange http response header in the download.
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <!-- fun workaround -->
-                                <echo message="downloading via curl" />
-                                <exec executable="curl">
-                                    <arg value="-o" />
-                                    <arg value="${project.build.directory}/${project.artifactId}.zip" />
-                                    <arg value="${downloadUrl}/Highcharts-${version.unsnapshot}.zip" />
-                                </exec>
+                                <echo message="download archive"/>
+                                <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip"/>
                                 <echo message="unzipping" />
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}/zip" />
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
                                 <echo message="moving resources" />
                                 <move todir="${destinationDir}">
-                                    <fileset dir="${project.build.directory}/zip/code" />
+                                    <fileset dir="${project.build.directory}/highcharts-dist-${version.unrevise}" />
                                 </move>
                             </target>
                         </configuration>
