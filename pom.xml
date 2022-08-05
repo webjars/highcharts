@@ -18,6 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.outputTimestamp>10</project.build.outputTimestamp>
         <upstream.url>https://github.com/highcharts/highcharts-dist/archive/v${version.unrevise}.zip</upstream.url>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destinationDir>
         <requirejs>
@@ -98,7 +99,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>3.0.0-M6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
             </plugin>
 
             <plugin>
