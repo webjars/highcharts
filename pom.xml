@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>10.3.4-SNAPSHOT</version>
+    <version>11.1.0-SNAPSHOT</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
@@ -19,7 +19,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputTimestamp>1683557634</project.build.outputTimestamp>
-        <upstream.url>https://github.com/highcharts/highcharts-dist/archive/v${version.unrevise}.zip</upstream.url>
+        <upstream.url>https://code.highcharts.com/zips/Highcharts-${version.unrevise}.zip</upstream.url>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destinationDir>
         <requirejs>
             {
@@ -85,11 +85,7 @@
                                 <echo message="download archive" />
                                 <get src="${upstream.url}" dest="${project.build.directory}/${project.artifactId}.zip" />
                                 <echo message="unzipping" />
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
-                                <echo message="moving resources" />
-                                <move todir="${destinationDir}">
-                                    <fileset dir="${project.build.directory}/highcharts-dist-${version.unrevise}" />
-                                </move>
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${destinationDir}" />
                             </target>
                         </configuration>
                     </execution>
