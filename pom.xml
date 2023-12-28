@@ -11,14 +11,14 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>highcharts</artifactId>
-    <version>11.2.0-SNAPSHOT</version>
+    <version>11.2.0</version>
     <name>Highcharts</name>
     <description>WebJar for Highcharts</description>
     <url>http://webjars.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.outputTimestamp>1688768727</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1703744090</project.build.outputTimestamp>
         <upstream.url>https://code.highcharts.com/zips/Highcharts-${version.unrevise}.zip</upstream.url>
         <destinationDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destinationDir>
         <requirejs>
@@ -46,7 +46,7 @@
         <url>http://github.com/webjars/highcharts</url>
         <connection>scm:git:https://github.com/webjars/highcharts.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/highcharts.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>highcharts-11.2.0</tag>
     </scm>
 
     <developers>
